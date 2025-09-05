@@ -1,0 +1,36 @@
+/* タブ / パネル / 汎用コンポーネントのレイアウト */
+.tabs{
+  display:flex;
+  gap:24px;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  background:var(--bg);
+  z-index:5;
+  padding:0 16px; /* 横余白を container と揃える */
+}
+
+/* 個々のタブボタン */
+.tab{
+  appearance:none;
+  background:none;
+  border:none;
+  color:var(--muted);
+  padding:14px 0;
+  cursor:pointer;
+  font-size:16px;
+  border-bottom:3px solid transparent;
+}
+.tab:is(:hover,.is-active){color:var(--text)}
+.tab.is-active{border-color:var(--brand)}
+
+/* パネルの切替表示（is-active で表示する） */
+.panel{display:none;padding:16px 0}
+.panel.is-active{display:block}
+
+/* 投稿カード（tweet風） */
+.tweet-card{display:flex;gap:12px;padding:16px;border-bottom:1px solid var(--line)}
+
+/* ボタン類の基本 */
+.btn{display:inline-block;padding:8px 12px;border-radius:999px;background:var(--brand);color:white;font-weight:600}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}

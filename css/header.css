@@ -1,0 +1,31 @@
+/* カバー領域（上部タイトルスペース + カバー画像） */
+.cover{
+  position:relative;   /* 内部の絶対配置要素の基準 */
+  max-width:600px;     /* container と幅を揃える */
+  margin:0 auto;
+  height:220px;        /* 必要に応じて調整 */
+  overflow:hidden;
+  background:#000;
+}
+
+/* カバー上部の余白領域：ここにタイトルを置く（画像とは別） */
+.cover-top{
+  width:100%;
+  box-sizing:border-box;
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:center; /* 中央寄せ。大画面で左寄せにする場合は media query で上書き */
+  z-index:3;
+}
+
+/* カバーのタイトル表示 */
+.cover-top__title{margin:0;font-size:clamp(16px,2.5vw,20px);color:var(--text);font-weight:700;letter-spacing:0.6px}
+
+/* カバー画像は親領域に合わせてトリミング */
+.cover img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+
+/* レスポンシブでカバー上部タイトルを左寄せにする例 */
+@media (min-width:720px){
+  .cover-top{justify-content:flex-start;padding-left:16px}
+}

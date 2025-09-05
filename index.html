@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>あなたの名前 | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="cover">
+    <img src="img/cover.jpg" alt="カバー画像" />
+  </header>
+
+  <main class="container">
+    <section class="profile">
+      <img class="avatar" src="img/avatar.jpg" alt="プロフィールアイコン" />
+      <div class="who">
+        <h1 class="name">あなたの名前 <span class="handle">@your_handle</span></h1>
+        <p class="bio">
+          Web / ゲーム / イラスト。リズム×ローグライク制作中。  
+          <a class="link" href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a> ・
+          <a class="link" href="https://pixiv.me/yourid" target="_blank" rel="noopener">Pixiv</a> ・
+          <a class="link" href="mailto:you@example.com">Contact</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- タブ -->
+    <nav class="tabs" role="tablist" aria-label="コンテンツ切り替え">
+      <button class="tab is-active" role="tab" aria-selected="true" data-tab="posts">ポスト</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="art">イラスト</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="design">デザイン</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="about">プロフィール</button>
+    </nav>
+
+    <!-- コンテンツ: ポスト風（カード） -->
+    <section id="posts" class="panel is-active" role="tabpanel">
+      <article class="tweet-card">
+        <div class="tweet-icon">🛠️</div>
+        <div class="tweet-body">
+          <header>
+            <span class="tweet-name">制作ログ</span>
+            <time class="tweet-time">2025/06/01</time>
+          </header>
+          <p>Twitter風ポートフォリオをHTML/CSS/JSで実装。タブ切替＆ギャラリー対応。</p>
+          <footer class="tweet-actions">
+            <a href="#" class="btn ghost">詳細</a>
+            <a href="#" class="btn ghost">GitHub</a>
+          </footer>
+        </div>
+      </article>
+
+      <article class="tweet-card">
+        <div class="tweet-icon">🎮</div>
+        <div class="tweet-body">
+          <header>
+            <span class="tweet-name">BeatSurvivor</span>
+            <time class="tweet-time">2025/05/12</time>
+          </header>
+          <p>リズムに合わせて戦う2.5Dアクション。敵の出現と強化を時間で制御。</p>
+          <footer class="tweet-actions">
+            <a href="#" class="btn ghost">トレイラー</a>
+          </footer>
+        </div>
+      </article>
+    </section>
+
+    <!-- コンテンツ: イラスト（ギャラリー） -->
+    <section id="art" class="panel" role="tabpanel" aria-hidden="true">
+      <div class="gallery">
+        <a href="img/work-1.jpg" class="thumb" data-lightbox data-title="赤×青の空">
+          <img src="img/work-1.jpg" alt="赤青テーマのイラスト" />
+        </a>
+        <a href="img/work-2.jpg" class="thumb" data-lightbox data-title="海とサメの影">
+          <img src="img/work-2.jpg" alt="海テーマのイラスト" />
+        </a>
+        <a href="img/work-3.jpg" class="thumb" data-lightbox data-title="雲の竜">
+          <img src="img/work-3.jpg" alt="雲で形づくる竜" />
+        </a>
+        <!-- 作品を増やすときはこの<a>を複製 -->
+      </div>
+      <p class="gallery-note">画像タップで拡大。詳細ページに遷移させたい場合は各<a>にhrefを作品ページURLに変更。</p>
+    </section>
+
+    <!-- コンテンツ: デザイン -->
+    <section id="design" class="panel" role="tabpanel" aria-hidden="true">
+      <div class="cards">
+        <a class="work-card" href="#">
+          <h3>ロゴ：PoketPlay</h3>
+          <p>コインモチーフのタイポ＋シンボル。</p>
+        </a>
+        <a class="work-card" href="#">
+          <h3>名刺 / 4字熟語年賀</h3>
+          <p>ビジネス部門向けの最小色設計。</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- コンテンツ: プロフィール詳細 -->
+    <section id="about" class="panel" role="tabpanel" aria-hidden="true">
+      <h2>About</h2>
+      <p>UE5 / GAS / PaperZD。BGMとQuartzでリズム通知、システム設計が得意。</p>
+      <ul class="tags">
+        <li>#UnrealEngine5</li><li>#Blueprint</li><li>#AfterEffects</li><li>#Illustration</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- シンプルLightbox用モーダル -->
+  <div id="lightbox" class="lightbox" aria-modal="true" role="dialog" hidden>
+    <button class="lightbox-close" aria-label="閉じる">×</button>
+    <img id="lightbox-img" alt="">
+    <p id="lightbox-title" class="lightbox-title"></p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

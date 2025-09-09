@@ -1,31 +1,42 @@
-/* カバー領域（上部タイトルスペース + カバー画像） */
-.cover{
-  position:relative;   /* 内部の絶対配置要素の基準 */
-  max-width:600px;     /* container と幅を揃える */
+/* 共通変数は base.css 側で定義されている想定 */
+:root{ /* 既定値を維持する場合は削除可 */
+  --cover-height:220px;
+  --container-padding:16px;
+}
+
+/* タイトルを画像の上ではなく上に配置するためのブロック */
+.cover-header{
+  max-width:var(--container-max-width,600px);
   margin:0 auto;
-  height:220px;        /* 必要に応じて調整 */
-  overflow:hidden;
-  background:#000;
-}
-
-/* カバー上部の余白領域：ここにタイトルを置く（画像とは別） */
-.cover-top{
-  width:100%;
+  padding:12px var(--container-padding,16px);
   box-sizing:border-box;
-  padding:12px 16px;
-  display:flex;
-  align-items:center;
-  justify-content:center; /* 中央寄せ。大画面で左寄せにする場合は media query で上書き */
-  z-index:3;
 }
 
-/* カバーのタイトル表示 */
-.cover-top__title{margin:0;font-size:clamp(16px,2.5vw,20px);color:var(--text);font-weight:700;letter-spacing:0.6px}
-
-/* カバー画像は親領域に合わせてトリミング */
-.cover img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-
-/* レスポンシブでカバー上部タイトルを左寄せにする例 */
-@media (min-width:720px){
-  .cover-top{justify-content:flex-start;padding-left:16px}
+/* 既存のタイトルクラスは引き続き利用 */
+.cover-top__title{
+  margin:0;
+  font-size:clamp(16px,2.5vw,20px);
+  color:var(--text);
+  font-weight:700;
+  letter-spacing:0.6px;
 }
+
+/* カバー領域は画像のみ（高さは変えずトリミングを維持） */
+.cover{
+  position:relative;
+  height:var(--cover-height);
+  max-width:var(--container-max-width,600px);
+  margin:0 auto;
+  overflow:hidden;
+  z-index:1;
+}
+
+.cover img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+
+/* 以前 .cover-top に入れていた absolute 指定等は削除または上書きしてください */

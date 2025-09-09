@@ -1,41 +1,39 @@
 /* プロフィール周りのスタイル（index と pages/profile 両方で使う） */
 
-/* アバターサイズを変数で管理（必要なら調整） */
+/* 変数（カバー高さ・アバターサイズ・カバーの見切れ位置） */
 :root {
-  --avatar-size: 112px;
+  --cover-height: 180px;       /* カバー全体の高さ */
+  --avatar-size: 112px;        /* アバターの表示サイズ */
+  --cover-cut-percent: 0.85;   /* 見切れ位置（0=上端、1=下端）。調整して合わせる */
 }
 
-/* カバーを基準に絶対配置できるようにしておく */
-.cover {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
 
-/* アバターをカバー内で絶対配置し、カバー下端がアバター中央になるように */
-.profile-avatar {
-  position: absolute;
-  left: 16px; /* 左寄せを維持 */
-  top: calc(100% - (var(--avatar-size) / 2)); /* カバー下端をアバター中央に合わせる */
-  width: var(--avatar-size);
-  height: var(--avatar-size);
-  border-radius: 50%;
-  overflow: hidden;
-  z-index: 6; /* 必ずカバーより前面 */
-  box-sizing: border-box;
+/* アバターは base.css の変数で制御 */
+.profile-avatar{
+  position:absolute; /* .hero/.cover を基準に絶対配置する想定 */
+  left:var(--container-padding); /* 左寄せ（コンテナのパディングと揃える） */
+  width:var(--avatar-size);
+  height:var(--avatar-size);
+  border-radius:50%;
+  overflow:hidden;
+  box-sizing:border-box;
+  z-index:10;
+
+  /* アバター中央を「見切れ位置」に合わせる計算 */
+  top: calc( (var(--cover-height) * var(--cover-cut-percent)) - (var(--avatar-size) / 2) );
 }
 
 /* アバター本体 */
-.avatar {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid var(--bg);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
-  z-index: 7;
+.avatar{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  border-radius:50%;
+  border:var(--avatar-border) solid var(--bg);
+  box-shadow:0 6px 18px rgba(0,0,0,0.45);
 }
+
 
 /* プロフィール情報領域はアバターの下半分分の余白を確保 */
 .profile {
@@ -73,4 +71,44 @@
   }
   .profile-avatar{ width:112px; height:112px; margin-right:16px; }
   .profile-info{ padding-left:0; max-width:none; }
+}
+
+/* 親要素を基準にする（確実に相対配置） */
+.hero {
+  position: relative; /* これが無いと .profile-avatar は body を基準にする */
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* アバターをコンテナの内側に収める（左寄せを維持しつつ画面端に飛び出さない） */
+.profile-avatar{
+  position: absolute;
+  /* 左オフセットを「(親幅 - 最大コンテナ幅)/2 + コンテナ内パディング」で計算。
+     親がフル幅のときでも中央コンテナに揃って表示される。 */
+  left: calc((100% - var(--container-max-width)) / 2 + var(--container-padding) + var(--avatar-left-offset));
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 10;
+
+  /* アバター中央を「見切れ位置」に合わせる */
+  top: calc(var(--cover-height) );
+
+  /* さらに微調整が必要なら translate を使う */
+  transform: translateY(var(--avatar-translate-y));
+}
+
+/* 念のため avatar のスタイルを再確認 */
+.avatar{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+  border:var(--avatar-border) solid var(--bg);
+  box-shadow:0 6px 18px rgba(0,0,0,0.45);
 }

@@ -1,6 +1,6 @@
 /* 変数・リセット: 全体で使うカラートークンや基本レイアウトを定義 */
 :root{
-  --bg:#000000;
+  --bg:#0f1419;
   --card:#15202b;
   --line:#263340;
   --text:#e6e9ec;
@@ -8,6 +8,22 @@
   --accent:#1d9bf0;
   --brand:#a855f7;
   --radius:14px;
+
+  /* 共通レイアウト基準（ヘッダー・アバター位置の基準をここで管理） */
+  --container-max-width:600px;
+  --container-padding:16px;
+
+  /* カバー（ヘッダー）基準 */
+  --cover-height: 220px;        /* カバーの高さ */
+  --cover-cut-percent: 0.85;    /* 見切れ位置（0〜1）を調整して垂直合わせ */
+
+  /* アバター基準 */
+  --avatar-size: 112px;         /* アバターのサイズ */
+  --avatar-border: 4px;
+
+  /* 微調整用（px 単位で素早く試せる） */
+  --avatar-left-offset: 0px;    /* 水平微調整（左に負、右に正） */
+  --avatar-translate-y: 0px;    /* 垂直微調整（上に負、下に正） */
 }
 
 /* ボックスサイズを全要素で統一 */
@@ -21,4 +37,8 @@ a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
 
 /* 中央コンテナの幅制御（すべてのページで共通） */
-.container{max-width:600px;margin:0 auto;width:100%;padding:0 16px}
+.container{
+  max-width:var(--container-max-width);
+  margin:0 auto;
+  padding:0 var(--container-padding);
+}

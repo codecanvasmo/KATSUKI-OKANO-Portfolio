@@ -15,46 +15,40 @@
 <body>
 
   <!-- カバー（上部のタイトル領域 + 画像） -->
+  <!-- ヘッダーのタイトル（カバー画像の上ではなく上に表示） -->
+  <div class="cover-header">
+    <h1 class="cover-top__title">KATSUKI OKANO Portfolio</h1>
+  </div>
+
   <header class="cover">
-    <div class="cover-top">
-      <h1 class="cover-top__title">KATSUKI OKANO Portfolio</h1>
-    </div>
     <img src="img/cover.jpg" alt="カバー画像" />
-
-
   </header>
-    <!-- アバターをカバー内に移動：カバー下端をアバターの中央に合わせるため -->
-    <div class="profile-avatar" aria-hidden="false">
-      <img class="avatar" src="img/avatar.png" alt="プロフィールアイコン" />
-    </div>
-  <!-- メインコンテンツ幅をcontainerで制御 -->
+
   <main class="container">
-    <!-- プロフィール：アイコンと情報を明確に分離 -->
     <section class="profile">
-      <!-- アバターは cover 内にあるためここは情報のみ -->
+      <!-- アバターをカバー外に配置（左寄せ） -->
+      <div class="profile-avatar" aria-hidden="false">
+        <img class="avatar" src="img/avatar.png" alt="プロフィールアイコン" />
+      </div>
+
       <div class="profile-info who" aria-label="プロフィール情報">
-        <h1 class="name">KATSUKI OKANO <span class="handle">@your_handle</span></h1>
-        <p class="bio">
-          Web / ゲーム / イラスト。リズム×ローグライク制作中。
-          <a class="link" href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a>
-          ・<a class="link" href="https://pixiv.me/yourid" target="_blank" rel="noopener">Pixiv</a>
-        </p>
+        <h1 class="name">岡野 勝喜 <span class="handle">@katsuki_okano</span></h1>
+        <p class="bio">Web / ゲーム / イラスト。リズム×ローグライク制作中。 <a class="link" href="#">GitHub</a> ・ <a class="link" href="#">Pixiv</a></p>
       </div>
     </section>
 
-    <!-- タブナビゲーション（JSで切り替え） -->
+    <!-- タブナビゲーション：プロフィール / イラスト のみ -->
     <nav class="tabs" role="tablist" aria-label="コンテンツ切り替え">
-      <button class="tab is-active" role="tab" aria-selected="true" data-tab="posts">ポスト</button>
+      <button class="tab is-active" role="tab" aria-selected="true" data-tab="profile">プロフィール</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="art">イラスト</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="design">デザイン</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="about">プロフィール</button>
     </nav>
 
-    <!-- 各パネル（初期表示は posts） -->
-    <section id="posts" class="panel is-active" role="tabpanel">
-      <!-- 投稿カードなど -->
+    <!-- パネル：プロフィール（初期表示） -->
+    <section id="profile" class="panel is-active" role="tabpanel" aria-hidden="false">
+      <!-- 必要ならプロフィール関連のコンテンツをここに -->
     </section>
 
+    <!-- パネル：イラスト -->
     <section id="art" class="panel" role="tabpanel" aria-hidden="true">
       <div class="gallery">
         <a href="img/work-1.jpg" class="thumb" data-lightbox data-title="赤×青の空"><img src="img/work-1.jpg" alt="work1"></a>
@@ -63,8 +57,6 @@
       </div>
     </section>
 
-    <section id="design" class="panel" role="tabpanel" aria-hidden="true"></section>
-    <section id="about" class="panel" role="tabpanel" aria-hidden="true"></section>
   </main>
 
   <!-- ライトボックス：画像拡大用モーダル -->
